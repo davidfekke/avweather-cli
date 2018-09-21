@@ -28,26 +28,41 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`avwx hello`](#avwx-hello)
+* [`avwx metar`](#avwx-metar)
+* [`avwx taf`](#avwx-taf)
 * [`avwx help [COMMAND]`](#avwx-help-command)
 
-## `avwx hello`
+## `avwx metar`
 
-Describe the command here
+Get the METAR report for your airport
 
 ```
 USAGE
-  $ avwx hello
+  $ avwx metar
 
 OPTIONS
-  -n, --name=name  name to print
+  -a, --airport=icao  airport for weather
 
 DESCRIPTION
   ...
-  Extra documentation goes here
+  This will return the latest surface observation for the airport you specified.
 ```
 
-_See code: [src/commands/hello.js](https://github.com/davidfekke/avweather-cli/blob/v0.0.1/src/commands/hello.js)_
+## `avwx taf`
+
+Get the terminal area forcast report for your airport
+
+```
+USAGE
+  $ avwx taf
+
+OPTIONS
+  -a, --airport=icao  airport for weather
+
+DESCRIPTION
+  ...
+  This will the terminal area forcast for the airport you specified.
+```
 
 ## `avwx help [COMMAND]`
 
