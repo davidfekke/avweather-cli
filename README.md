@@ -19,7 +19,7 @@ $ npm install -g avweather-cli
 $ avwx COMMAND
 running command...
 $ avwx (-v|--version|version)
-avweather-cli/0.0.1 darwin-x64 node-v10.11.0
+avweather-cli/0.0.2 darwin-x64 node-v10.11.0
 $ avwx --help [COMMAND]
 USAGE
   $ avwx COMMAND
@@ -28,41 +28,9 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`avwx help [COMMAND]`](#avwx-help-command)
 * [`avwx metar`](#avwx-metar)
 * [`avwx taf`](#avwx-taf)
-* [`avwx help [COMMAND]`](#avwx-help-command)
-
-## `avwx metar`
-
-Get the METAR report for your airport
-
-```
-USAGE
-  $ avwx metar
-
-OPTIONS
-  -a, --airport=icao  airport for weather
-
-DESCRIPTION
-  ...
-  This will return the latest surface observation for the airport you specified.
-```
-
-## `avwx taf`
-
-Get the terminal area forcast report for your airport
-
-```
-USAGE
-  $ avwx taf
-
-OPTIONS
-  -a, --airport=icao  airport for weather
-
-DESCRIPTION
-  ...
-  This will the terminal area forcast for the airport you specified.
-```
 
 ## `avwx help [COMMAND]`
 
@@ -80,4 +48,40 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.2/src/commands/help.ts)_
+
+## `avwx metar`
+
+This command is used to display current METAR information for your airport
+
+```
+USAGE
+  $ avwx metar
+
+OPTIONS
+  -a, --airport=airport  name to print
+
+DESCRIPTION
+  ...
+  Simply use the ICAO identifier for your airport.
+```
+
+_See code: [src/commands/metar.js](https://github.com/davidfekke/avweather-cli/blob/v0.0.2/src/commands/metar.js)_
+
+## `avwx taf`
+
+This command is used to display current TAF information for your airport
+
+```
+USAGE
+  $ avwx taf
+
+OPTIONS
+  -a, --airport=airport  name to print
+
+DESCRIPTION
+  ...
+  Simply use the ICAO identifier for your airport.
+```
+
+_See code: [src/commands/taf.js](https://github.com/davidfekke/avweather-cli/blob/v0.0.2/src/commands/taf.js)_
 <!-- commandsstop -->
