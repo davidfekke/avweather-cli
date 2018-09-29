@@ -8,7 +8,15 @@ class TafCommand extends Command {
     const AVWeather = new AVWeatherService()
     const weather = await AVWeather.getTAF(airport)
     this.log(`Terminal area forcast information for airport ${airport}`)
-    this.log(weather)
+    weather.TAF.forEach(taf => {
+      if (flags.raw) {
+        this.log(taf.raw_text)
+      } else {
+        taf.forecast.forEach(forecast => {
+          this.log(forecast)
+        })
+      }
+    })
   }
 }
 
@@ -19,6 +27,7 @@ Simply use the ICAO identifier for your airport.
 
 TafCommand.flags = {
   airport: flags.string({char: 'a', description: 'name to print'}),
+  raw: flags.boolean({char: 'r', description: 'Print raw text of TAF'}),
 }
 
 module.exports = TafCommand

@@ -8,7 +8,11 @@ class MetarCommand extends Command {
     const AVWeather = new AVWeatherService()
     const weather = await AVWeather.getMETAR(airport)
     this.log(`Metar information for airport ${airport}`)
-    this.log(weather)
+    if (weather.METAR.length > 1 && flags.raw) {
+      this.log(weather.METAR[0].raw_text)
+    } else {
+      this.log(weather.METAR[0])
+    }
   }
 }
 
@@ -19,6 +23,7 @@ Simply use the ICAO identifier for your airport.
 
 MetarCommand.flags = {
   airport: flags.string({char: 'a', description: 'name to print'}),
+  raw: flags.boolean({char: 'r', description: 'Raw text for the METAR'}),
 }
 
 module.exports = MetarCommand
