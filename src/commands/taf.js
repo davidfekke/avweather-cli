@@ -3,8 +3,9 @@ const AVWeatherService = require('../lib/avweatherservice.js')
 
 class TafCommand extends Command {
   async run() {
-    const {flags} = this.parse(TafCommand)
-    const airport = flags.airport || 'KDAB'
+    const {args, flags} = this.parse(TafCommand)
+    let airport = args.icaoidentifier || 'KDAB'
+    airport = flags.airport || airport
     const AVWeather = new AVWeatherService()
     const weather = await AVWeather.getTAF(airport)
     this.log(`Terminal area forcast information for airport ${airport}`)
@@ -19,6 +20,9 @@ class TafCommand extends Command {
     })
   }
 }
+
+TafCommand.args = [{name: 'icaoidentifier'}]
+
 
 TafCommand.description = `This command is used to display current TAF information for your airport
 ...

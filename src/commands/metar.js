@@ -3,8 +3,9 @@ const AVWeatherService = require('../lib/avweatherservice.js')
 
 class MetarCommand extends Command {
   async run() {
-    const {flags} = this.parse(MetarCommand)
-    const airport = flags.airport || 'KDAB'
+    const {args, flags} = this.parse(MetarCommand)
+    let airport = args.icaoidentifier || 'KDAB'
+    airport = flags.airport || airport
     const AVWeather = new AVWeatherService()
     const weather = await AVWeather.getMETAR(airport)
     this.log(`Metar information for airport ${airport}`)
@@ -20,6 +21,9 @@ MetarCommand.description = `This command is used to display current METAR inform
 ...
 Simply use the ICAO identifier for your airport.
 `
+MetarCommand.args = [
+  {name: 'icaoidentifier'}
+]
 
 MetarCommand.flags = {
   airport: flags.string({char: 'a', description: 'name to print'}),
