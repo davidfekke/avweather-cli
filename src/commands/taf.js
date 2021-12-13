@@ -9,7 +9,7 @@ class TafCommand extends Command {
     const AVWeather = new AVWeatherService()
     const weather = await AVWeather.getTAF(airport)
     this.log(`Terminal area forcast information for airport ${airport}`)
-    weather.TAF.forEach(taf => {
+    weather.forEach(taf => {
       if (flags.raw) {
         this.log(taf.raw_text)
       } else {

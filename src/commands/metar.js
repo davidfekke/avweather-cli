@@ -9,10 +9,10 @@ class MetarCommand extends Command {
     const AVWeather = new AVWeatherService()
     const weather = await AVWeather.getMETAR(airport)
     this.log(`Metar information for airport ${airport}`)
-    if (weather.METAR.length > 1 && flags.raw) {
-      this.log(weather.METAR[0].raw_text)
+    if (weather.length > 1 && flags.raw) {
+      this.log(weather[0].raw_text)
     } else {
-      this.log(weather.METAR[0])
+      this.log(weather[0])
     }
   }
 }
