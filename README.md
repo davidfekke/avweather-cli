@@ -19,7 +19,7 @@ $ npm install -g avweather-cli
 $ avwx COMMAND
 running command...
 $ avwx (-v|--version|version)
-avweather-cli/0.2.0 darwin-x64 node-v16.0.0
+avweather-cli/0.2.1 darwin-x64 node-v16.0.0
 $ avwx --help [COMMAND]
 USAGE
   $ avwx COMMAND
@@ -66,7 +66,7 @@ DESCRIPTION
   Simply use the ICAO identifier for your airport.
 ```
 
-_See code: [src/commands/metar.js](https://github.com/davidfekke/avweather-cli/blob/v0.2.0/src/commands/metar.js)_
+_See code: [src/commands/metar.js](https://github.com/davidfekke/avweather-cli/blob/v0.2.1/src/commands/metar.js)_
 
 ## `avwx taf [ICAOIDENTIFIER]`
 
@@ -85,5 +85,5 @@ DESCRIPTION
   Simply use the ICAO identifier for your airport.
 ```
 
-_See code: [src/commands/taf.js](https://github.com/davidfekke/avweather-cli/blob/v0.2.0/src/commands/taf.js)_
+_See code: [src/commands/taf.js](https://github.com/davidfekke/avweather-cli/blob/v0.2.1/src/commands/taf.js)_
 <!-- commandsstop -->
