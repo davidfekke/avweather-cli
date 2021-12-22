@@ -13,9 +13,13 @@ class AVWeatherService {
   }
 
   async getTAF(icao) {
-    const response = await axios.get(`https://avwx.fekke.com/taf/${icao}`)
-    const jsonObj = response.data
-    return jsonObj
+    try {
+      const response = await axios.get(`https://avwx.fekke.com/taf/${icao}`)
+      const jsonObj = response.data
+      return jsonObj
+    } catch (error) {
+      return []
+    }
   }
 }
 
