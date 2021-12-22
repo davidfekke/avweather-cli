@@ -1,7 +1,7 @@
 {
   "name": "avweather-cli",
   "description": "Terminal application for getting aviation/pilot weather",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "author": "David Fekke @davidfekke",
   "bin": {
     "avwx": "./bin/run"
