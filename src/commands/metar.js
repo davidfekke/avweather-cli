@@ -9,11 +9,13 @@ class MetarCommand extends Command {
     airport = flags.airport || airport
     const AVWeather = new AVWeatherService()
     const weather = await AVWeather.getMETAR(airport)
-    this.log(`Metar information for airport ${airport}`)
+    const observation = weather[0];
+
     if (weather.length > 1 && flags.raw) {
-      this.log(weather[0].raw_text)
-    } else {
-      const observation = weather[0];
+      this.log(`Metar information for airport ${observation.station_id}`);
+      this.log(observation.raw_text)
+    } else if (weather.length > 1 && !flags.raw) {
+      this.log(`Metar information for airport ${observation.station_id}`);
       this.log(`STATION ID: ${observation.station_id}`);
       this.log(`OBSERVATION TIME: ${observation.observation_time}`);
       this.log(`LATITUDE: ${observation.latitude} LONGITUDE ${observation.longitude}`);
@@ -28,7 +30,9 @@ class MetarCommand extends Command {
       this.log(`VISIBILITY: ${observation.visibility_statute_mi}`);
       let altim = new Number(observation.altim_in_hg);
       this.log(`ALTIMETER: ${altim.toFixed(2)}`);
-      this.log(`SEA LEVEL PRESSURE: ${observation.sea_level_pressure_mb}`);
+      if (observation.sea_level_pressure_mb !== undefined) {
+        this.log(`SEA LEVEL PRESSURE: ${observation.sea_level_pressure_mb}`);
+      }
       switch (observation.flight_category) {
         case 'VFR':
           this.log(`FLIGHT CATEGORY: ${observation.flight_category}`);
@@ -46,10 +50,14 @@ class MetarCommand extends Command {
           this.log(`FLIGHT CATEGORY: N/A`);
       }
       observation.sky_condition.forEach(sky => {
-        this.log(`SKY CONDITION: ${sky.sky_cover}`);
-        this.log(`SKY LAYER: ${sky.cloud_base_ft_agl}`);
+        this.log(`  SKY CONDITION: ${sky.sky_cover}`);
+        if (sky.cloud_base_ft_agl !== undefined) {
+          this.log(`  SKY LAYER: ${sky.cloud_base_ft_agl}`);
+        }
       });
-      this.log(`PRECIPITATION: ${observation.precip_in}`);
+      if (observation.precip_in !== undefined) {
+        this.log(`PRECIPITATION: ${observation.precip_in}`);
+      }
       this.log(`ELEVATION (METERS): ${observation.elevation_m}`);
     }
   }
