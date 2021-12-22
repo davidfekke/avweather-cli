@@ -25,7 +25,7 @@ class TafCommand extends Command {
     const weather = await AVWeather.getTAF(airport)
     if (weather.length > 1) {
       const currentForecast = weather[0];
-      this.log(`Terminal area forecast information for airport ${airport}`)
+      this.log(`Terminal area forecast information for airport ${currentForecast.station_id}`);
       if (flags.raw) {
         this.log(currentForecast.raw_text)
       } else {
