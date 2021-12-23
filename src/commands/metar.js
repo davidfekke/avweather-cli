@@ -11,7 +11,7 @@ class MetarCommand extends Command {
     const weather = await AVWeather.getMETAR(airport)
     const observation = weather[0];
 
-    if (weather.length > 1 && flags.raw) {
+    if (weather.length > 0 && flags.raw) {
       this.log(`Metar information for airport ${observation.station_id}`);
       this.log(observation.raw_text)
     } else if (weather.length > 1 && !flags.raw) {
