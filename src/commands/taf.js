@@ -46,8 +46,10 @@ class TafCommand extends Command {
             this.log(`WEATHER: ${forecast.wx_string}`);
           }
           forecast.sky_condition.forEach(sky => {
-            this.log(`  SKY CONDITION: ${sky.sky_cover}`);
-            if (sky.cloud_base_ft_agl !== undefined) {
+            if (sky !== null && sky.sky_cover !== undefined) {
+              this.log(`  SKY COVER: ${sky.sky_cover}`);
+            }
+            if (sky !== null && sky.cloud_base_ft_agl !== undefined) {
               this.log(`  SKY LAYER: ${sky.cloud_base_ft_agl}`);
             }
           });
