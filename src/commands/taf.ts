@@ -1,28 +1,52 @@
-const {Command, flags} = require('@oclif/command')
-const AVWeatherService = require('../lib/avweatherservice.js')
+import {Args, Command, Flags} from '@oclif/core';
 
-/*
-Sample output for each item in the array:
-fcst_time_from: '2021-12-21T15:00:00Z',
-  fcst_time_to: '2021-12-21T17:00:00Z',
-  change_indicator: 'FM',
-  wind_dir_degrees: '140',
-  wind_speed_kt: '11',
-  wind_gust_kt: '18',
-  visibility_statute_mi: '4.0',
-  wx_string: 'SHRA VCTS',
-  sky_condition: [
-    { sky_cover: 'SCT', cloud_base_ft_agl: '600', cloud_type: 'CB' },
-    { sky_cover: 'OVC', cloud_base_ft_agl: '1500' }
+import { getTaf } from '../lib/weatherservice.js';
+
+interface ITaf {
+  raw_text: string;
+  station_id: string;
+  forecast: IForecast[];
+}
+
+interface IForecast {
+  precip_in: string | undefined;
+  fcst_time_from: string;
+  fcst_time_to: string;
+  change_indicator: string;
+  wind_dir_degrees: string;
+  wind_speed_kt: string;
+  wind_gust_kt: string;
+  visibility_statute_mi: string;
+  wx_string: string;
+  sky_condition: ISkyCondition[];
+}
+
+interface ISkyCondition {
+  cloud_base_ft_agl: string;
+  sky_cover: string;
+}
+
+export default class Taf extends Command {
+  static description = 'Get terminal area forecasts'
+
+  static examples = [
+    '<%= config.bin %> <%= command.id %>',
   ]
-*/
-class TafCommand extends Command {
-  async run() {
-    const {args, flags} = this.parse(TafCommand)
-    let airport = args.icaoidentifier || 'KDAB'
-    airport = flags.airport || airport
-    const AVWeather = new AVWeatherService()
-    const weather = await AVWeather.getTAF(airport)
+
+  static args = {
+    icaoId: Args.string({description: 'Identifier for reporting station'})
+  }
+
+  static flags = {
+    raw: Flags.boolean({char: 'f', summary: 'Raw Report', description: 'Just show the raw TAF report.'})
+  }
+
+  public async run(): Promise<void> {
+    const {args, flags} = await this.parse(Taf)
+    const identifier: string = args.icaoId ?? 'KDAB';
+    const tafData = await getTaf(identifier);
+    
+    const weather = tafData as unknown as ITaf[];
     if (weather.length > 1) {
       const currentForecast = weather[0];
       this.log(`Terminal area forecast information for airport ${currentForecast.station_id}`);
@@ -62,18 +86,3 @@ class TafCommand extends Command {
     }
   }
 }
-
-TafCommand.args = [{name: 'icaoidentifier'}]
-
-
-TafCommand.description = `This command is used to display current TAF information for your airport
-...
-Simply use the ICAO identifier for your airport.
-`
-
-TafCommand.flags = {
-  airport: flags.string({char: 'a', description: 'name to print'}),
-  raw: flags.boolean({char: 'r', description: 'Print raw text of TAF'}),
-}
-
-module.exports = TafCommand

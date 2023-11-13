@@ -18,8 +18,8 @@ Terminal application for getting aviation/pilot weather
 $ npm install -g avweather-cli
 $ avwx COMMAND
 running command...
-$ avwx (-v|--version|version)
-avweather-cli/0.4.3 darwin-x64 node-v16.13.1
+$ avwx (--version)
+avweather-cli/0.5.0 darwin-arm64 node-v20.8.1
 $ avwx --help [COMMAND]
 USAGE
   $ avwx COMMAND
@@ -28,62 +28,359 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`avwx help [COMMAND]`](#avwx-help-command)
-* [`avwx metar [ICAOIDENTIFIER]`](#avwx-metar-icaoidentifier)
-* [`avwx taf [ICAOIDENTIFIER]`](#avwx-taf-icaoidentifier)
+* [`avwx help [COMMANDS]`](#avwx-help-commands)
+* [`avwx metar [ICAOID]`](#avwx-metar-icaoid)
+* [`avwx plugins`](#avwx-plugins)
+* [`avwx plugins:install PLUGIN...`](#avwx-pluginsinstall-plugin)
+* [`avwx plugins:inspect PLUGIN...`](#avwx-pluginsinspect-plugin)
+* [`avwx plugins:install PLUGIN...`](#avwx-pluginsinstall-plugin-1)
+* [`avwx plugins:link PLUGIN`](#avwx-pluginslink-plugin)
+* [`avwx plugins:uninstall PLUGIN...`](#avwx-pluginsuninstall-plugin)
+* [`avwx plugins reset`](#avwx-plugins-reset)
+* [`avwx plugins:uninstall PLUGIN...`](#avwx-pluginsuninstall-plugin-1)
+* [`avwx plugins:uninstall PLUGIN...`](#avwx-pluginsuninstall-plugin-2)
+* [`avwx plugins update`](#avwx-plugins-update)
+* [`avwx taf [ICAOID]`](#avwx-taf-icaoid)
 
-## `avwx help [COMMAND]`
+## `avwx help [COMMANDS]`
 
-display help for avwx
+Display help for avwx.
 
 ```
 USAGE
-  $ avwx help [COMMAND]
+  $ avwx help [COMMANDS] [-n]
 
 ARGUMENTS
-  COMMAND  command to show help for
+  COMMANDS  Command to show help for.
 
-OPTIONS
-  --all  see all commands in CLI
+FLAGS
+  -n, --nested-commands  Include all nested commands in the output.
+
+DESCRIPTION
+  Display help for avwx.
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.20/src/commands/help.ts)_
 
-## `avwx metar [ICAOIDENTIFIER]`
+## `avwx metar [ICAOID]`
 
-This command is used to display current METAR information for your airport
+describe the command here
 
 ```
 USAGE
-  $ avwx metar [ICAOIDENTIFIER]
+  $ avwx metar [ICAOID] [-f]
 
-OPTIONS
-  -a, --airport=airport  name to print
-  -r, --raw              Raw text for the METAR
+ARGUMENTS
+  ICAOID  Identifier for reporting station
+
+FLAGS
+  -f, --raw  Raw Report
 
 DESCRIPTION
-  ...
-  Simply use the ICAO identifier for your airport.
+  describe the command here
+
+EXAMPLES
+  $ avwx metar
+
+FLAG DESCRIPTIONS
+  -f, --raw  Raw Report
+
+    Just show the raw metar report.
 ```
 
-_See code: [src/commands/metar.js](https://github.com/davidfekke/avweather-cli/blob/v0.4.3/src/commands/metar.js)_
+_See code: [src/commands/metar.ts](https://github.com/davidfekke/avweather-cli/blob/v0.5.0/src/commands/metar.ts)_
 
-## `avwx taf [ICAOIDENTIFIER]`
+## `avwx plugins`
 
-This command is used to display current TAF information for your airport
+List installed plugins.
 
 ```
 USAGE
-  $ avwx taf [ICAOIDENTIFIER]
+  $ avwx plugins [--json] [--core]
 
-OPTIONS
-  -a, --airport=airport  name to print
-  -r, --raw              Print raw text of TAF
+FLAGS
+  --core  Show core plugins.
+
+GLOBAL FLAGS
+  --json  Format output as json.
 
 DESCRIPTION
-  ...
-  Simply use the ICAO identifier for your airport.
+  List installed plugins.
+
+EXAMPLES
+  $ avwx plugins
 ```
 
-_See code: [src/commands/taf.js](https://github.com/davidfekke/avweather-cli/blob/v0.4.3/src/commands/taf.js)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.5/src/commands/plugins/index.ts)_
+
+## `avwx plugins:install PLUGIN...`
+
+Installs a plugin into the CLI.
+
+```
+USAGE
+  $ avwx plugins:install PLUGIN...
+
+ARGUMENTS
+  PLUGIN  Plugin to install.
+
+FLAGS
+  -f, --force    Run yarn install with force flag.
+  -h, --help     Show CLI help.
+  -s, --silent   Silences yarn output.
+  -v, --verbose  Show verbose yarn output.
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Installs a plugin into the CLI.
+  Can be installed from npm or a git url.
+
+  Installation of a user-installed plugin will override a core plugin.
+
+  e.g. If you have a core plugin that has a 'hello' command, installing a user-installed plugin with a 'hello' command
+  will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
+  the CLI without the need to patch and update the whole CLI.
+
+
+ALIASES
+  $ avwx plugins add
+
+EXAMPLES
+  $ avwx plugins:install myplugin 
+
+  $ avwx plugins:install https://github.com/someuser/someplugin
+
+  $ avwx plugins:install someuser/someplugin
+```
+
+## `avwx plugins:inspect PLUGIN...`
+
+Displays installation properties of a plugin.
+
+```
+USAGE
+  $ avwx plugins:inspect PLUGIN...
+
+ARGUMENTS
+  PLUGIN  [default: .] Plugin to inspect.
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Displays installation properties of a plugin.
+
+EXAMPLES
+  $ avwx plugins:inspect myplugin
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.5/src/commands/plugins/inspect.ts)_
+
+## `avwx plugins:install PLUGIN...`
+
+Installs a plugin into the CLI.
+
+```
+USAGE
+  $ avwx plugins:install PLUGIN...
+
+ARGUMENTS
+  PLUGIN  Plugin to install.
+
+FLAGS
+  -f, --force    Run yarn install with force flag.
+  -h, --help     Show CLI help.
+  -s, --silent   Silences yarn output.
+  -v, --verbose  Show verbose yarn output.
+
+GLOBAL FLAGS
+  --json  Format output as json.
+
+DESCRIPTION
+  Installs a plugin into the CLI.
+  Can be installed from npm or a git url.
+
+  Installation of a user-installed plugin will override a core plugin.
+
+  e.g. If you have a core plugin that has a 'hello' command, installing a user-installed plugin with a 'hello' command
+  will override the core plugin implementation. This is useful if a user needs to update core plugin functionality in
+  the CLI without the need to patch and update the whole CLI.
+
+
+ALIASES
+  $ avwx plugins add
+
+EXAMPLES
+  $ avwx plugins:install myplugin 
+
+  $ avwx plugins:install https://github.com/someuser/someplugin
+
+  $ avwx plugins:install someuser/someplugin
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.5/src/commands/plugins/install.ts)_
+
+## `avwx plugins:link PLUGIN`
+
+Links a plugin into the CLI for development.
+
+```
+USAGE
+  $ avwx plugins:link PLUGIN
+
+ARGUMENTS
+  PATH  [default: .] path to plugin
+
+FLAGS
+  -h, --help      Show CLI help.
+  -v, --verbose
+  --[no-]install  Install dependencies after linking the plugin.
+
+DESCRIPTION
+  Links a plugin into the CLI for development.
+  Installation of a linked plugin will override a user-installed or core plugin.
+
+  e.g. If you have a user-installed or core plugin that has a 'hello' command, installing a linked plugin with a 'hello'
+  command will override the user-installed or core plugin implementation. This is useful for development work.
+
+
+EXAMPLES
+  $ avwx plugins:link myplugin
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.5/src/commands/plugins/link.ts)_
+
+## `avwx plugins:uninstall PLUGIN...`
+
+Removes a plugin from the CLI.
+
+```
+USAGE
+  $ avwx plugins:uninstall PLUGIN...
+
+ARGUMENTS
+  PLUGIN  plugin to uninstall
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+DESCRIPTION
+  Removes a plugin from the CLI.
+
+ALIASES
+  $ avwx plugins unlink
+  $ avwx plugins remove
+```
+
+## `avwx plugins reset`
+
+Remove all user-installed and linked plugins.
+
+```
+USAGE
+  $ avwx plugins reset
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.5/src/commands/plugins/reset.ts)_
+
+## `avwx plugins:uninstall PLUGIN...`
+
+Removes a plugin from the CLI.
+
+```
+USAGE
+  $ avwx plugins:uninstall PLUGIN...
+
+ARGUMENTS
+  PLUGIN  plugin to uninstall
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+DESCRIPTION
+  Removes a plugin from the CLI.
+
+ALIASES
+  $ avwx plugins unlink
+  $ avwx plugins remove
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.5/src/commands/plugins/uninstall.ts)_
+
+## `avwx plugins:uninstall PLUGIN...`
+
+Removes a plugin from the CLI.
+
+```
+USAGE
+  $ avwx plugins:uninstall PLUGIN...
+
+ARGUMENTS
+  PLUGIN  plugin to uninstall
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+DESCRIPTION
+  Removes a plugin from the CLI.
+
+ALIASES
+  $ avwx plugins unlink
+  $ avwx plugins remove
+```
+
+## `avwx plugins update`
+
+Update installed plugins.
+
+```
+USAGE
+  $ avwx plugins update [-h] [-v]
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+DESCRIPTION
+  Update installed plugins.
+```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.5/src/commands/plugins/update.ts)_
+
+## `avwx taf [ICAOID]`
+
+Get terminal area forecasts
+
+```
+USAGE
+  $ avwx taf [ICAOID] [-f]
+
+ARGUMENTS
+  ICAOID  Identifier for reporting station
+
+FLAGS
+  -f, --raw  Raw Report
+
+DESCRIPTION
+  Get terminal area forecasts
+
+EXAMPLES
+  $ avwx taf
+
+FLAG DESCRIPTIONS
+  -f, --raw  Raw Report
+
+    Just show the raw TAF report.
+```
+
+_See code: [src/commands/taf.ts](https://github.com/davidfekke/avweather-cli/blob/v0.5.0/src/commands/taf.ts)_
 <!-- commandsstop -->
