@@ -19,7 +19,7 @@ $ npm install -g avweather-cli
 $ avwx COMMAND
 running command...
 $ avwx (--version)
-avweather-cli/0.5.0 darwin-arm64 node-v20.8.1
+avweather-cli/0.5.0 darwin-arm64 node-v18.14.2
 $ avwx --help [COMMAND]
 USAGE
   $ avwx COMMAND
