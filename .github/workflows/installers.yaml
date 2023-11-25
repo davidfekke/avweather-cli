@@ -1,0 +1,40 @@
+name: Build Installers
+
+on:
+  push:
+    branches:
+      - main # Change to your main branch name
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 14 # You can change the Node.js version
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build Installer
+      run: npx oclif pack ${{ matrix.os }}
+      # Use the appropriate command to build installers for each platform (e.g., 'npx oclif pack debian' for Debian)
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: installers
+        path: dist # Change this to the actual output directory of your installers
+

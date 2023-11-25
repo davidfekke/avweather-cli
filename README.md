@@ -19,7 +19,7 @@ $ npm install -g avweather-cli
 $ avwx COMMAND
 running command...
 $ avwx (--version)
-avweather-cli/0.5.0 darwin-arm64 node-v20.8.1
+avweather-cli/0.5.0 linux-x64 node-v20.8.1
 $ avwx --help [COMMAND]
 USAGE
   $ avwx COMMAND
@@ -111,7 +111,7 @@ EXAMPLES
   $ avwx plugins
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.5/src/commands/plugins/index.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.8/src/commands/plugins/index.ts)_
 
 ## `avwx plugins:install PLUGIN...`
 
@@ -119,7 +119,7 @@ Installs a plugin into the CLI.
 
 ```
 USAGE
-  $ avwx plugins:install PLUGIN...
+  $ avwx plugins add plugins:install PLUGIN...
 
 ARGUMENTS
   PLUGIN  Plugin to install.
@@ -148,11 +148,11 @@ ALIASES
   $ avwx plugins add
 
 EXAMPLES
-  $ avwx plugins:install myplugin 
+  $ avwx plugins add myplugin 
 
-  $ avwx plugins:install https://github.com/someuser/someplugin
+  $ avwx plugins add https://github.com/someuser/someplugin
 
-  $ avwx plugins:install someuser/someplugin
+  $ avwx plugins add someuser/someplugin
 ```
 
 ## `avwx plugins:inspect PLUGIN...`
@@ -161,7 +161,7 @@ Displays installation properties of a plugin.
 
 ```
 USAGE
-  $ avwx plugins:inspect PLUGIN...
+  $ avwx plugins inspect PLUGIN...
 
 ARGUMENTS
   PLUGIN  [default: .] Plugin to inspect.
@@ -177,10 +177,10 @@ DESCRIPTION
   Displays installation properties of a plugin.
 
 EXAMPLES
-  $ avwx plugins:inspect myplugin
+  $ avwx plugins inspect myplugin
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.5/src/commands/plugins/inspect.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.8/src/commands/plugins/inspect.ts)_
 
 ## `avwx plugins:install PLUGIN...`
 
@@ -188,7 +188,7 @@ Installs a plugin into the CLI.
 
 ```
 USAGE
-  $ avwx plugins:install PLUGIN...
+  $ avwx plugins install PLUGIN...
 
 ARGUMENTS
   PLUGIN  Plugin to install.
@@ -217,14 +217,14 @@ ALIASES
   $ avwx plugins add
 
 EXAMPLES
-  $ avwx plugins:install myplugin 
+  $ avwx plugins install myplugin 
 
-  $ avwx plugins:install https://github.com/someuser/someplugin
+  $ avwx plugins install https://github.com/someuser/someplugin
 
-  $ avwx plugins:install someuser/someplugin
+  $ avwx plugins install someuser/someplugin
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.5/src/commands/plugins/install.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.8/src/commands/plugins/install.ts)_
 
 ## `avwx plugins:link PLUGIN`
 
@@ -232,15 +232,15 @@ Links a plugin into the CLI for development.
 
 ```
 USAGE
-  $ avwx plugins:link PLUGIN
+  $ avwx plugins link PLUGIN
 
 ARGUMENTS
   PATH  [default: .] path to plugin
 
 FLAGS
-  -h, --help      Show CLI help.
+  -h, --help          Show CLI help.
   -v, --verbose
-  --[no-]install  Install dependencies after linking the plugin.
+      --[no-]install  Install dependencies after linking the plugin.
 
 DESCRIPTION
   Links a plugin into the CLI for development.
@@ -251,10 +251,10 @@ DESCRIPTION
 
 
 EXAMPLES
-  $ avwx plugins:link myplugin
+  $ avwx plugins link myplugin
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.5/src/commands/plugins/link.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.8/src/commands/plugins/link.ts)_
 
 ## `avwx plugins:uninstall PLUGIN...`
 
@@ -262,7 +262,7 @@ Removes a plugin from the CLI.
 
 ```
 USAGE
-  $ avwx plugins:uninstall PLUGIN...
+  $ avwx plugins remove plugins:uninstall PLUGIN...
 
 ARGUMENTS
   PLUGIN  plugin to uninstall
@@ -277,6 +277,9 @@ DESCRIPTION
 ALIASES
   $ avwx plugins unlink
   $ avwx plugins remove
+
+EXAMPLES
+  $ avwx plugins remove myplugin
 ```
 
 ## `avwx plugins reset`
@@ -288,7 +291,7 @@ USAGE
   $ avwx plugins reset
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.5/src/commands/plugins/reset.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.8/src/commands/plugins/reset.ts)_
 
 ## `avwx plugins:uninstall PLUGIN...`
 
@@ -296,7 +299,7 @@ Removes a plugin from the CLI.
 
 ```
 USAGE
-  $ avwx plugins:uninstall PLUGIN...
+  $ avwx plugins uninstall PLUGIN...
 
 ARGUMENTS
   PLUGIN  plugin to uninstall
@@ -311,9 +314,12 @@ DESCRIPTION
 ALIASES
   $ avwx plugins unlink
   $ avwx plugins remove
+
+EXAMPLES
+  $ avwx plugins uninstall myplugin
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.5/src/commands/plugins/uninstall.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.8/src/commands/plugins/uninstall.ts)_
 
 ## `avwx plugins:uninstall PLUGIN...`
 
@@ -321,7 +327,7 @@ Removes a plugin from the CLI.
 
 ```
 USAGE
-  $ avwx plugins:uninstall PLUGIN...
+  $ avwx plugins unlink plugins:uninstall PLUGIN...
 
 ARGUMENTS
   PLUGIN  plugin to uninstall
@@ -336,6 +342,9 @@ DESCRIPTION
 ALIASES
   $ avwx plugins unlink
   $ avwx plugins remove
+
+EXAMPLES
+  $ avwx plugins unlink myplugin
 ```
 
 ## `avwx plugins update`
@@ -354,7 +363,7 @@ DESCRIPTION
   Update installed plugins.
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.5/src/commands/plugins/update.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v4.1.8/src/commands/plugins/update.ts)_
 
 ## `avwx taf [ICAOID]`
 
