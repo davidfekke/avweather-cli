@@ -19,7 +19,7 @@ $ npm install -g avweather-cli
 $ avwx COMMAND
 running command...
 $ avwx (--version)
-avweather-cli/0.5.0 darwin-arm64 node-v18.14.2
+avweather-cli/0.5.0 linux-x64 node-v18.14.2
 $ avwx --help [COMMAND]
 USAGE
   $ avwx COMMAND
@@ -119,7 +119,7 @@ Installs a plugin into the CLI.
 
 ```
 USAGE
-  $ avwx plugins:install PLUGIN...
+  $ avwx plugins add plugins:install PLUGIN...
 
 ARGUMENTS
   PLUGIN  Plugin to install.
@@ -161,7 +161,7 @@ Displays installation properties of a plugin.
 
 ```
 USAGE
-  $ avwx plugins:inspect PLUGIN...
+  $ avwx plugins inspect PLUGIN...
 
 ARGUMENTS
   PLUGIN  [default: .] Plugin to inspect.
@@ -188,7 +188,7 @@ Installs a plugin into the CLI.
 
 ```
 USAGE
-  $ avwx plugins:install PLUGIN...
+  $ avwx plugins install PLUGIN...
 
 ARGUMENTS
   PLUGIN  Plugin to install.
@@ -232,7 +232,7 @@ Links a plugin into the CLI for development.
 
 ```
 USAGE
-  $ avwx plugins:link PLUGIN
+  $ avwx plugins link PLUGIN
 
 ARGUMENTS
   PATH  [default: .] path to plugin
@@ -262,7 +262,7 @@ Removes a plugin from the CLI.
 
 ```
 USAGE
-  $ avwx plugins:uninstall PLUGIN...
+  $ avwx plugins remove plugins:uninstall PLUGIN...
 
 ARGUMENTS
   PLUGIN  plugin to uninstall
@@ -299,7 +299,7 @@ Removes a plugin from the CLI.
 
 ```
 USAGE
-  $ avwx plugins:uninstall PLUGIN...
+  $ avwx plugins uninstall PLUGIN...
 
 ARGUMENTS
   PLUGIN  plugin to uninstall
@@ -327,7 +327,7 @@ Removes a plugin from the CLI.
 
 ```
 USAGE
-  $ avwx plugins:uninstall PLUGIN...
+  $ avwx plugins unlink plugins:uninstall PLUGIN...
 
 ARGUMENTS
   PLUGIN  plugin to uninstall
