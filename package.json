@@ -51,6 +51,10 @@
       "hello": {
         "description": "Say hello to the world and others"
       }
+    },
+    "macos": {
+      "identifier": "com.fekke.avwx",
+      "sign": "\"3rd Party Mac Developer Installer: David Fekke (JXRDDKQ33V)\""
     }
   },
   "repository": "davidfekke/avweather-cli",
