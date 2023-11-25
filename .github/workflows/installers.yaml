@@ -29,7 +29,14 @@ jobs:
       run: npm install
 
     - name: Build Installer
-      run: npx oclif pack ${{ matrix.os }}
+      run: |
+        if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
+          npx oclif pack deb
+        elif [[ "${{ matrix.os }}" == "windows-latest" ]]; then
+          npx oclif pack win
+        elif [[ "${{ matrix.os }}" == "macos-latest" ]]; then
+          npx oclif pack macos
+        fi
       # Use the appropriate command to build installers for each platform (e.g., 'npx oclif pack debian' for Debian)
 
     - name: Upload artifacts
