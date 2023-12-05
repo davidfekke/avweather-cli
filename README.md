@@ -19,7 +19,7 @@ $ npm install -g avweather-cli
 $ avwx COMMAND
 running command...
 $ avwx (--version)
-avweather-cli/0.5.1 darwin-arm64 node-v18.14.2
+avweather-cli/0.5.2 darwin-arm64 node-v18.14.2
 $ avwx --help [COMMAND]
 USAGE
   $ avwx COMMAND
@@ -88,7 +88,7 @@ FLAG DESCRIPTIONS
     Just show the raw metar report.
 ```
 
-_See code: [src/commands/metar.ts](https://github.com/davidfekke/avweather-cli/blob/v0.5.1/src/commands/metar.ts)_
+_See code: [src/commands/metar.ts](https://github.com/davidfekke/avweather-cli/blob/v0.5.2/src/commands/metar.ts)_
 
 ## `avwx plugins`
 
@@ -391,5 +391,5 @@ FLAG DESCRIPTIONS
     Just show the raw TAF report.
 ```
 
-_See code: [src/commands/taf.ts](https://github.com/davidfekke/avweather-cli/blob/v0.5.1/src/commands/taf.ts)_
+_See code: [src/commands/taf.ts](https://github.com/davidfekke/avweather-cli/blob/v0.5.2/src/commands/taf.ts)_
 <!-- commandsstop -->
