@@ -393,3 +393,5 @@ FLAG DESCRIPTIONS
 
 _See code: [src/commands/taf.ts](https://github.com/davidfekke/avweather-cli/blob/v0.5.15/src/commands/taf.ts)_
 <!-- commandsstop -->
+
+Copyright David Fekke L.L.C.  2023
