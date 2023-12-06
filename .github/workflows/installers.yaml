@@ -15,6 +15,9 @@ jobs:
           - target: macos
             artifact_glob: "./dist/macos/*"
             runs-on: macos-latest
+          - target: deb
+            artifact_glob: "./dist/deb/*"
+            runs-on: ubuntu-latest
 
     runs-on: ${{ matrix.runs-on }}
 
