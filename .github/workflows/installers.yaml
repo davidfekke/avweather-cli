@@ -57,7 +57,8 @@ jobs:
         security list-keychain -d user -s $KEYCHAIN_PATH
 
     - run: oclif pack ${{ matrix.target }} -r .
-    - run: npx oclif pack win -r .
+    - run: oclif pack win -r .
+      shell: powershell
       if: matrix.target == 'win'
     - name: Attach artifacts to release
       uses: svenstaro/upload-release-action@v2
